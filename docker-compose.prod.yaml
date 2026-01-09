@@ -1,0 +1,16 @@
+services:
+  memos:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: memos
+    restart: always
+    volumes:
+      - ./data/memos:/var/opt/memos
+    ports:
+      - 5230:5230
+    environment:
+      - MEMOS_DRIVER=mysql
+      # 请修改下方的数据库连接配置
+      # 格式: 用户名:密码@tcp(数据库地址:端口)/数据库名
+      - MEMOS_DSN=YOUR_DB_USER:YOUR_DB_PASSWORD@tcp(YOUR_DB_HOST:3306)/YOUR_DB_NAME
